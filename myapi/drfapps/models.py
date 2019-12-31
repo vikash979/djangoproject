@@ -5,8 +5,8 @@ from datetime import date,datetime
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
-#from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager, PermissionsMixin, AbstractUser
-#from django.contrib.auth.models import UserManager
+
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
