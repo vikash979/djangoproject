@@ -25,7 +25,7 @@ SECRET_KEY = 'd%!t_08lh8po2o9#la*xh!wp^0pw*jnt=*i&5@+0_u8c6#vy5s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.8', 'localhost']
 
 
 # Application definition
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drfapps.apps.DrfappsConfig',
+    'users',
+
 ]
 
 MIDDLEWARE = [
@@ -73,14 +76,26 @@ WSGI_APPLICATION = 'myapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'reshi',
+        'USER': 'postgres',
+        'PASSWORD': 'sudha007',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
-
+AUTH_USER_MODEL = 'drfapps.User'
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
