@@ -29,7 +29,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2')}
+            'fields': ('email', 'password1', 'password2','bio')}
         ),
     )
     search_fields = ('email',)
@@ -39,7 +39,7 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(User, UserAdmin)
 
-admin.site.unregister(Group)
+#admin.site.unregister(Group)
 admin.site.register(Venue)
 admin.site.register(MyclubUser)
 admin.site.register(Event)
