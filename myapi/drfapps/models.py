@@ -2,19 +2,83 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date,datetime
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
+#from django.contrib.auth.models import User, AbstractBaseUser, BaseUserManager, PermissionsMixin, AbstractUser
+#from django.contrib.auth.models import UserManager
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        """
+        Creates and saves a User with the given email and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
 
-from django.db import models
+        user = self.model(
+            email=self.normalize_email(email),
+        )
 
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-from django.utils import timezone
-from django.contrib.auth.models import AbstractUser
+    def create_staffuser(self, email, password):
+        """
+        Creates and saves a staff user with the given email and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.staff = True
+        user.save(using=self._db)
+        return user
 
-class User(AbstractUser):
-    class Meta:
-        db_table = 'auth_user'
-# accounts.models.py
+    def create_superuser(self, email, password):
+        """
+        Creates and saves a superuser with the given email and password.
+        """
+        user = self.create_user(
+            email,
+            password=password,
+        )
+        user.staff = True
+        user.admin = True
+        user.save(using=self._db)
+        return user
 
+class User(AbstractBaseUser):
+    email = models.EmailField(max_length=255,unique=True)
+    active = models.BooleanField(default=True)
+    admin = models.BooleanField(default=False)
+    staff = models.BooleanField(default=False)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+    objects = UserManager()
 
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        return self.staff
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
 
 class Employee(models.Model):
     first_name = models.CharField(max_length=30)
