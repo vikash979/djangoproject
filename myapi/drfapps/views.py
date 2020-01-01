@@ -11,11 +11,13 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from myapps.templates.form import EmpForm,StudentForm
-from myapps.functions.functions import handle_uploaded_file
-from  myapps.models import Student
+from drfapps.form import EmpForm,StudentForm
+#from drfapps.functions.functions import handle_uploaded_file
+from  drfapps.models import Student
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
-@login_required
 def index(request):
    print(request)
    #template = loader.get_template('myapps/index.html') # getting our template
@@ -51,7 +53,12 @@ def acti(request):
                 # if request.method == "POST":
     #     form = EmployeeForm(request.POST)
     return render(request, 'acti.html', {'form': "form"})
-
+from django.contrib import messages
+def logout_request(request):
+    print("@@@@@@@@@@@@@@@",request)
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return redirect("drfapps:acti")
 
 class UsersManagersTests(TestCase):
 

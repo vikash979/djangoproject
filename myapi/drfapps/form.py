@@ -1,5 +1,5 @@
 from django import forms
-from myapps.models import Student
+from drfapps.models import Student
 
 
 class EmpForm(forms.ModelForm):
