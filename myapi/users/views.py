@@ -5,22 +5,40 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from users.forms import CustomUserCreationForm
 from users.forms import SignUpForm
+#from users.tokens import account_activation_token
 from django import forms
-def signup(request):
+def signupv(request):
     if request.method == 'POST':
+        useru = authenticate(username='admin1', password='sudha007')
+        print("!!!!!!!!!!!!!", useru)
+        if useru:
+            print("bbbbbb")
+            login(request, useru)
+        else:
+            print("ooooo")
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            #user.refresh_from_db()  # load the profile instance created by the signal
-            #user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.is_active = False
             user.save()
+            #current_site = get_current_site(request)
+            subject = 'Activate Your MySite Account'
+            #print("@@@@@@@@@@@@@",account_activation_token.make_token(user))
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
+            print(":::::::::",user.username,"@@@@@@@@@@",raw_password)
+            useru = authenticate(username='wertyt', password='ranjana007')
 
-            login(request, user)
-            #return redirect('/')
-            form = SignUpForm()
+            # if user:
+            #     print("bbbbbb")
+            #     #login(request, user)
+            # else:
+            #     print("ooooo")
+            #return redirect('home')
+
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup1.html', {'form': form})
 
+
+def home_view(request):
+    return render(request, 'home.html')

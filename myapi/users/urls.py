@@ -17,7 +17,8 @@ urlpatterns = [
    # url(r'^$', views.index, name='index'),
    #  url(r'^acti/$', views.acti, name='acti'),
    #  path("logout_request", views.logout_request, name="logout_request"),
-    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^signupiii/$', views.signupv, name='signup'),
+    url(r'^home/$', views.home_view, name='home_view'),
 
     # /movie1/<moviesList_id>/
 
