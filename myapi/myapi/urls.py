@@ -26,5 +26,5 @@ from drfapps import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('actiy/', include('drfapps.urls')),
+    path('actiyy/', include('users.urls')),
 ]

@@ -4,7 +4,7 @@ from django.views.generic.base import TemplateView
 #
 from django.conf.urls import url
 from . import views
-app_name = 'drfapps'
+app_name = 'users'
 urlpatterns = [
     #path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
@@ -15,8 +15,8 @@ urlpatterns = [
 urlpatterns = [
     # /movie1/
    # url(r'^$', views.index, name='index'),
-    url(r'^acti/$', views.acti, name='acti'),
-    path("logout_request", views.logout_request, name="logout_request"),
+   #  url(r'^acti/$', views.acti, name='acti'),
+   #  path("logout_request", views.logout_request, name="logout_request"),
     url(r'^signup/$', views.signup, name='signup'),
 
     # /movie1/<moviesList_id>/

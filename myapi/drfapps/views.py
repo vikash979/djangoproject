@@ -14,9 +14,12 @@ from django.contrib.auth.decorators import login_required
 from drfapps.form import EmpForm,StudentForm
 #from drfapps.functions.functions import handle_uploaded_file
 from  drfapps.models import Student
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.contrib import messages
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 
 def index(request):
    print(request)
@@ -53,7 +56,7 @@ def acti(request):
                 # if request.method == "POST":
     #     form = EmployeeForm(request.POST)
     return render(request, 'acti.html', {'form': "form"})
-from django.contrib import messages
+
 def logout_request(request):
     print("@@@@@@@@@@@@@@@",request)
     logout(request)
@@ -98,3 +101,16 @@ class UsersManagersTests(TestCase):
         with self.assertRaises(ValueError):
             User.objects.create_superuser(
                 email='super@user.com', password='foo', is_superuser=False)
+
+def signup(request):
+    if request.method == 'POST':
+        print("@@@@@@@@@@@@@@@@@@@",request.POST)
+        form = UserCreationForm(request.POST)
+        print("#############",form)
+        #form = UserCreationForm(request.POST)
+        form = UserCreationForm()
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'signup.html', {'form': form})
+    #return HttpResponse("<h2>Hello, Welcome to Django!</h2>")
