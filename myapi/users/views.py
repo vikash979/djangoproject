@@ -9,11 +9,12 @@ from users.forms import SignUpForm
 from django import forms
 def signupv(request):
     if request.method == 'POST':
-        useru = authenticate(username='admin1', password='sudha007')
+        useru = authenticate(username=request.POST['username'], password='sudha007')
         print("!!!!!!!!!!!!!", useru)
         if useru:
             print("bbbbbb")
             login(request, useru)
+            return redirect('/actiyy/home/')
         else:
             print("ooooo")
         form = SignUpForm(request.POST)
@@ -41,4 +42,5 @@ def signupv(request):
 
 
 def home_view(request):
-    return render(request, 'home.html')
+    print(request.user.username)
+    return render(request, 'home2.html', {'form': 'form'})

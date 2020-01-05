@@ -58,7 +58,7 @@ ROOT_URLCONF = 'myapi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['users/templates/','drfapps/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,6 +98,7 @@ DATABASES = {
 
 #AUTH_USER_MODEL = 'drfapps.User'
 AUTH_USER_MODEL= 'users.CustomUser'
+LOGIN_REDIRECT_URL = 'home'
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -135,5 +136,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
+
