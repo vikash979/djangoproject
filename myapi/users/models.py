@@ -15,6 +15,7 @@ class CustomUser(AbstractUser):
         return self.username
 
 
+
 class Profile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
