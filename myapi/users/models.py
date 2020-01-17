@@ -8,7 +8,14 @@ from django.dispatch import receiver
 
 
 class CustomUser(AbstractUser):
-    pass
+    USER_TYPE_CHOICES = (
+        (1, 'student'),
+        (2, 'teacher'),
+        (3, 'secretary'),
+        (4, 'supervisor'),
+        (5, 'admin'),
+    )
+    admin = models.IntegerField(choices=USER_TYPE_CHOICES, default='1')
     # add additional fields in here
 
     def __str__(self):
