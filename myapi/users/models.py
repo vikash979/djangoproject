@@ -9,11 +9,11 @@ from django.dispatch import receiver
 
 class CustomUser(AbstractUser):
     USER_TYPE_CHOICES = (
-        (1, 'student'),
+        (1, 'admin'),
         (2, 'teacher'),
         (3, 'secretary'),
         (4, 'supervisor'),
-        (5, 'admin'),
+        (5, 'student'),
     )
     admin = models.IntegerField(choices=USER_TYPE_CHOICES, default='1')
     # add additional fields in here
@@ -40,3 +40,15 @@ def update_user_profile(sender, instance, created, **kwargs):
         print("ok")
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+class blog(models.Model):
+   
+    title = models.CharField(max_length=200)
+    created_on = models.DateField(null=True, blank=True)
+    author = models.CharField(max_length=200)
+    content = models.TextField()
+
+
+    # def __str__(self):
+    #     print("fdfdfdf")
+    #     return self.title

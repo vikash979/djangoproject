@@ -1,0 +1,16 @@
+{{form}}
+
+<ul>
+{% for movie in form %}
+<li>
+<table></table>
+<tr>
+<td><h2>{{movie.title}}</h2>
+<p>
+{{movie.content |truncatechars:200}}
+
+<br/>Authors :  &nbsp;&nbsp;{{movie.author}}
+</p>
+</td><td></td></tr></li>
+{% endfor %}
+</ul>
