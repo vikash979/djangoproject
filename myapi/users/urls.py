@@ -20,6 +20,9 @@ urlpatterns = [
    #  path("logout_request", views.logout_request, name="logout_request"),
     url(r'^signupiii/$', views.signupv, name='signup'),
     url(r'^home/$', views.home_view, name='home_view'),
+    url(r'^blog/$', views.blogs, name='blogs'),
+    url(r'^blofdetailsss/(?P<id>[0-9]+)/$', views.blofdetail, name='blofdetail'),
+    #url(r'^(?P<moviesList_id>[0-9]+)/$' ,views.blofdetail,name='blofdetail'),
 
     # /movie1/<moviesList_id>/
 

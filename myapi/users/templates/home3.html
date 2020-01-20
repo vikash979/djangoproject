@@ -5,7 +5,8 @@
 <li>
 <table></table>
 <tr>
-<td><h2>{{movie.title}}</h2>
+<td><h2><a href="{% url 'users:blofdetail' movie.id %}">{{movie.title}}</a>
+</h2>
 <p>
 {{movie.content |truncatechars:200}}
 

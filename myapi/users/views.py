@@ -4,7 +4,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from users.forms import CustomUserCreationForm
+from django.http import HttpResponse
 from users.forms import SignUpForm
+from .models import blog
+from users.models import blog
 #from users.tokens import account_activation_token
 from django import forms
 def signupv(request):
@@ -44,3 +47,16 @@ def signupv(request):
 def home_view(request):
     print(request.user.username)
     return render(request, 'home2.html', {'form': 'form'})
+
+def blogs(request):
+    
+
+    ff = blog.objects.all()
+    
+    return render(request, 'home3.html', {'form': ff})
+
+def blofdetail(request,id):
+    
+    movie = blog.objects.get(id=id)
+
+    return render(request, 'home4.html', {'form':movie})

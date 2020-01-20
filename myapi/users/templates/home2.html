@@ -9,7 +9,7 @@
 
 <img src="{% static 'index.jpg' %}" alt="My image" height="300px" width="700px"/>
 
-<form method ="post" action="{% url 'users:blog'%}">{% csrf_token %}
+<form method ="post" action="{% url 'users:blogs'%}">{% csrf_token %}
 <input type="text" name="heading" id="heading" value="" placeholder="heading">
 <br/>
 <br/>
